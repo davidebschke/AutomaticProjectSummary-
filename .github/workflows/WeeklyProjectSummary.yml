@@ -1,0 +1,15 @@
+name: Weekly Project Summary
+on:
+  schedule:
+    - cron: '8 0 * * 1' # Every Monday at 08:00 Uhr
+  workflow_dispatch: # Erlaubt manuelles Testen per Button
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Project Summary Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python projectSummary.py
